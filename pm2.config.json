@@ -1,0 +1,10 @@
+{
+  "apps": [
+    {
+      "name": "santa-api",
+      "script": "./src/app.js",
+      "watch": true,
+      "ignore_watch": "node_modules"
+    }
+  ]
+}
