@@ -1,5 +1,12 @@
 import { Schema, model } from "mongoose";
 
+const guildSchema = new Schema({
+  guildId: String,
+});
+guildSchema.index({ guildId: 1 }, { unique: true });
+
+export const Guild = model("Guild", guildSchema);
+
 const userSchema = new Schema({
   karma: { type: Number, default: 0 },
   discordId: String,

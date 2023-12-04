@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { User, Present } from "./mongodb/schemas.js";
+import { User, Present, Guild } from "./mongodb/schemas.js";
 
 mongoose.connect(
   `mongodb+srv://${process.env.ATLAS_USER}:${process.env.ATLAS_PASSWORD}@santabotcluster.xydjoao.mongodb.net/?retryWrites=true&w=majority`
@@ -65,4 +65,13 @@ export async function getDiscordGuildUsers(
   } else {
     return User.find({ discordGuildId });
   }
+}
+
+export function addGuilds(guildIds) {
+  const guilds = guildIds.map((guildId) => ({ guildId }));
+  return Guild.insertMany(guilds);
+}
+
+export function getAllGuilds() {
+  return Guild.find();
 }

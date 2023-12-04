@@ -7,6 +7,8 @@ import {
   getDiscordGuildUsers,
   updateDiscordUsers,
   createDiscordUserPresents,
+  getAllGuilds,
+  addGuilds,
 } from "./mongodb.js";
 import bodyParser from "body-parser";
 
@@ -14,6 +16,14 @@ const router = Router();
 
 router.get("/status", (req, res) => {
   res.send(`Healthy: ${Date.now()}`);
+});
+
+router.post("/discord/guild", bodyParser.json(), async (req, res) => {
+  res.send(await addGuilds(req.body));
+});
+
+router.get("/discord/guild", async (req, res) => {
+  res.send(await getAllGuilds());
 });
 
 router.get(
