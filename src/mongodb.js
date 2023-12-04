@@ -28,12 +28,16 @@ export function updateDiscordUsers(discordGuildId, updates) {
 
 export async function getDiscordUserPresents(discordGuildId, discordId) {
   const user = await User.findOne({ discordGuildId, discordId });
-  return Present.find({ user: user._id });
+  return Present.find({ user: user._id }).sort({
+    priority: "ascending",
+  });
 }
 
 export async function getDiscordGuildPresents(discordGuildId) {
   let users = await User.find({ discordGuildId });
-  return Present.find({ user: { $in: users.map(({ id }) => id) } });
+  return Present.find({ user: { $in: users.map(({ id }) => id) } }).sort({
+    priority: "ascending",
+  });
 }
 
 export function createPresent(description, priority, userId) {
