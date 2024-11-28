@@ -23,6 +23,7 @@ const presentSchema = new Schema({
   discordName: String,
   description: String,
   priority: Number,
+  year: Number
 });
 userSchema.index({ user: 1, priority: 1 }, { unique: true });
 
